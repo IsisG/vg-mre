@@ -1,0 +1,16 @@
+<div *ngIf="pokemon.listTipos.list.length > 0">
+    <table class="table table-sm">
+        <thead  class="thead-light">
+        <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Imagem</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let pokemon of pokemon.listTipos.list">
+            <td>{{pokemon['pokemon']['name'] | titlecase}}</td>
+            <td>{{pokemon['pokemon']['url']}}</td>
+        </tr>
+        </tbody>
+    </table> 
+</div>

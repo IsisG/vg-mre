@@ -1,0 +1,56 @@
+
+<div class="row">
+    <div class="col-6 m-auto">
+        <div class="ml-5 mt-5">
+            <h4> Pesquisar Pokemon</h4>
+        </div>
+
+        <form  #f="ngForm" (ngSubmit) = "onSubmit(f)" class="px-5 py-4">  
+            <div class="form-group mb-8 ml-6">
+            <label for="nome">Nome do Pokemon</label>
+            <input type="text" class="form-control" id="nome" name="nome" ngModel>
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend"> 
+                <label class="input-group-text" for="select">Tipo</label>
+                </div>
+                <select class="custom-select" id="tipo" name="tipo" ngModel>
+                    <option value="">Selecione</option>
+                <option [ngValue]="tipo" *ngFor="let tipo of tipos">{{tipo.name}}</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Buscar</button>
+        </form>
+
+        <br>
+        <br>
+    <div *ngIf="pesquisaPorNome && pokemonList.length > 0">
+        <table class="table table-sm">
+            <thead  class="thead-light">
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">Imagem</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let pokemon of pokemonList">
+                <td>{{ pokemon.id }}</td>
+                <td>{{ pokemon.nome | titlecase }}</td>
+                <td>{{ pokemon.listTipos.nome }}</td>
+                <td><img src={{pokemon.imagem}} class="tamanhoImagem"></td>
+              </tr>
+            </tbody>
+        </table> 
+    </div> 
+        <div *ngIf="pesquisaPorTipo">
+            <app-pesquisar-tipo [pokemon] = pokemon></app-pesquisar-tipo>
+        </div>
+    </div>
+</div>
+<!--<div *ngFor="let pokemon of pokemon.listTipos.list">
+    <p>{{pokemon.pokemon.name}}</p>
+    <p>{{pokemon.pokemon.url}}</p>
+</div> -->
+
